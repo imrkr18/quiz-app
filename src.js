@@ -84,16 +84,17 @@ const submitBtn = document.getElementById('submit')
 
 let currentQuiz = 0
 let score = 0
+let queNo = 0
 
 loadQuiz()
 
 function loadQuiz(){
-
+    queNo++
     deselectAnswer()
 
     const currentQuizData = quizData[currentQuiz]
 
-    question.innerHTML = currentQuizData.question
+    question.innerHTML = `Q.${queNo} `+ " " + currentQuizData.question
     a.innerHTML = currentQuizData.a
     b.innerHTML = currentQuizData.b
     c.innerHTML = currentQuizData.c
@@ -129,7 +130,7 @@ submitBtn.addEventListener('click', ()=>{
         }
         else{
             quiz.innerHTML = `
-            <h2 style="text-align:center">You final Score is ${score}/${quizData.length}</h2>
+            <h2 style="te">You final Score is ${score}/${quizData.length}</h2>
             <br>
             <button onclick="location.reload()">Reload</button>
             
