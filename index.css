@@ -15,7 +15,58 @@ body{
 
 }
 
+.name-container{
+    background-color: white;
+    width: 650px;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 7px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.2);
+}
+
+.name-container h2{
+    text-align: center;
+    font-size: 2.3rem;
+}
+
+#input-start{
+    padding: 5px 10px;
+    margin: 15px auto;
+    width: 450px;
+    border: 0;
+    border-bottom: 1.5px solid rgb(194, 189, 189);
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+#input-start:focus{
+    outline: none;
+}
+
+#input-start~ .focus-border{
+    position: absolute;
+    top: 407px;
+    left: 545px;
+    width: 0; height: 2.1px; background-color: #3399FF; transition: 0.4s;
+}
+
+
+#input-start:focus ~ .focus-border{
+    transition: 0.5s;
+    width: 450px;
+}
+
+#startBtn{
+    margin-top: 40px;
+    font-weight: 600;
+    font-size: large;
+
+}
 .container{
+    display:none;
     background-color: white;
     width: 650px;
 
@@ -79,4 +130,13 @@ button:hover{
 
 button:focus{
     background-color: rgb(8, 135, 8);
+}
+
+.footer{
+    text-align: start;
+    font-size: medium;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px 10px;
+    letter-spacing: 0.75px;
 }
