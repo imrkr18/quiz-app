@@ -15,6 +15,7 @@ body{
 
 }
 
+
 .name-container{
     background-color: white;
     width: 650px;
@@ -60,7 +61,6 @@ body{
 }
 
 #startBtn{
-    margin-top: 40px;
     font-weight: 600;
     font-size: large;
 
