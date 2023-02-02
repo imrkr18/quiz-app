@@ -1,3 +1,20 @@
+/*
+Features :
+
+1) Here you can enter your name which gives user personalized touch at the time of result
+2) Here 15 sec is the timer, you can increase and decrease the timer
+3) You can increase the no. of question to ask by just changing one variable in the code, all the other thing it maanges automatically
+4) You just have to add question data, code will automatically select the random question from there and will not be repeated again
+   in that particular quiz which makes it very easy to expand this quiz app
+5) Custom Remarks based on your performance in quiz is given at the final result time
+6) Alert message if you do not select any option and click on submit button
+7) If you do not answer question in that given time it will take it as a no responce and will give you score 0
+8) Also shows the no of question you have answered or appeared on
+9) You can also increase or decrease the time given for particular question.
+*/
+
+// Quiz data 
+
 const quizData = [
     {
         question : " What is CSS? ",
@@ -72,6 +89,7 @@ const quizData = [
     },
 ]
 
+// Selecting all the elements
 
 const nameInp = document.getElementById('nameInp')
 const quiz = document.getElementById('container')
@@ -86,18 +104,19 @@ const queFooterNo = document.getElementById('footer')
 const timeLine = document.getElementById('timeline')
 const userName = document.getElementById('input-start').value
 
-let counter
-let widthVal = 0
-let quizLength = 5
-let score = 0
-let queNo = 0
-let totalQues = 0
-let questionAnswered = []
-let currentQuiz = randomQuizNo()
-let remark = ["Low score! You have to practice more!","Very Good Score! Keep it up", "Amazing! You did it Topper"]
-let yourRemark = remark[0]
+// declaring all variable in global scope
+let counter // for time interval
+let widthVal = 0 // for width of time line running on top of question
+let quizLength = 5 // you can control the quiz length directly from here(You have to have the less or equal no of question in quizData)
+let score = 0  // to store score
+let queNo = 0 // to indicate queNo
+let questionAnswered = [] // to store asked question during quiz
+let remark = ["Low score! You have to practice more!","Very Good Score! Keep it up", "Amazing! You did it Topper"] // remarks
+let yourRemark = remark[0] // default remark
+let currentQuiz// generate the que randomly
 
 
+// function to generate random quiz question which is not asked before
 function randomQuizNo(){
     let quizNo =  Math.floor((Math.random() * quizData.length))
     while(questionAnswered.includes(quizNo)){
@@ -107,15 +126,17 @@ function randomQuizNo(){
 }
 
 
+// To load the quiz on app
+
 function loadQuiz(){
-    clearInterval(counter)
-    startTimer(0)
+    clearInterval(counter) // clears prev the counter
+    startTimer(0) // init the counter
     
     nameInp.style.display="none"
     quiz.style.display="block"
     queNo++
-    deselectAnswer()
-    currentQuiz = randomQuizNo()
+    deselectAnswer() 
+    currentQuiz = randomQuizNo() 
     const currentQuizData = quizData[currentQuiz]
 
     question.innerHTML = `Q${queNo}: `+ " " + currentQuizData.question
