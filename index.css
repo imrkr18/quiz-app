@@ -41,6 +41,9 @@ body{
     font-size: 2.3rem;
 }
 
+.input-div{
+    position: relative;
+}
 #input-start{
     padding: 5px 10px;
     margin: 15px auto;
@@ -54,11 +57,25 @@ body{
     box-sizing: border-box;
 }
 
-#input-start:focus{
+#input-start ~ .focus-border{
+    margin-left: 5rem;
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 0; 
+    height: 2.3px; 
+    background-color: #3399FF; 
+    transition: 0.4s;}
+#input-start:focus ~ .focus-border{
+    width: 75%; 
+    transition: 0.4s;
+}
+
+ #input-start:focus{
     outline: none;
 }
 
-#input-start~ .focus-border{
+/*#input-start~ .focus-border{
     position: absolute;
     top: 380px;
     left: 545px;
@@ -69,7 +86,7 @@ body{
 #input-start:focus ~ .focus-border{
     transition: 0.5s;
     width: 450px;
-}
+} */
 
 #startBtn{
     font-weight: 600;
