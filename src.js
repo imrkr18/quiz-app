@@ -102,7 +102,6 @@ const d = document.getElementById('text_d')
 const submitBtn = document.getElementById('submit')
 const queFooterNo = document.getElementById('footer')
 const timeLine = document.getElementById('timeline')
-const userName = document.getElementById('input-start').value
 
 // declaring all variable in global scope
 let counter // for time interval
@@ -191,6 +190,8 @@ submitBtn.addEventListener('click', ()=>{
 // to check next question
 function checkNext(){
     
+    const userName = document.getElementById('input-start').value
+
     questionAnswered.push(currentQuiz) // push the current quiz que into arr
     
     if(questionAnswered.length<quizLength){ // to check whether question asked are equal to quiz length or not
