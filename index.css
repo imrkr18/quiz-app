@@ -15,6 +15,17 @@ body{
 
 }
 
+#timeline{
+    position:inherit;
+    bottom:615.2px;
+    left : 445px;
+    width: 0;
+    background-color: #3399FF;
+    height: 3px ;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    
+}
 
 .name-container{
     background-color: white;
@@ -49,7 +60,7 @@ body{
 
 #input-start~ .focus-border{
     position: absolute;
-    top: 407px;
+    top: 380px;
     left: 545px;
     width: 0; height: 2.1px; background-color: #3399FF; transition: 0.4s;
 }
@@ -69,7 +80,6 @@ body{
     display:none;
     background-color: white;
     width: 650px;
-
     overflow: hidden;
     border-radius: 7px;
     box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.2);
@@ -118,10 +128,11 @@ button{
     margin: 0 auto;
     margin-bottom: 15px;
     border-radius: 7px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     cursor: pointer;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
+    
 }
 
 button:hover{

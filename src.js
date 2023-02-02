@@ -83,8 +83,11 @@ const c = document.getElementById('text_c')
 const d = document.getElementById('text_d')
 const submitBtn = document.getElementById('submit')
 const queFooterNo = document.getElementById('footer')
+const timeLine = document.getElementById('timeline')
+const userName = document.getElementById('input-start').value
 
-
+let counter
+let widthVal = 0
 let quizLength = 5
 let score = 0
 let queNo = 0
@@ -100,17 +103,19 @@ function randomQuizNo(){
     while(questionAnswered.includes(quizNo)){
         quizNo = Math.floor((Math.random() * quizData.length))
     }
-    questionAnswered.push(quizNo)
     return quizNo
 }
 
 
 function loadQuiz(){
+    clearInterval(counter)
+    startTimer(0)
+    
     nameInp.style.display="none"
     quiz.style.display="block"
     queNo++
     deselectAnswer()
-
+    currentQuiz = randomQuizNo()
     const currentQuizData = quizData[currentQuiz]
 
     question.innerHTML = `Q${queNo}: `+ " " + currentQuizData.question
@@ -140,34 +145,54 @@ function getSelected(){
 }
 
 submitBtn.addEventListener('click', ()=>{
-    const usesrName = document.getElementById('input-start').value
+
     const answer = getSelected()
+    
     if(answer){
         if(answer===quizData[currentQuiz].answer){
             score++
-        }
-        if(questionAnswered.length<quizLength){
-            currentQuiz = randomQuizNo()
-            loadQuiz() 
-        }
-        else{
-            if(score===quizLength)yourRemark = remark[2]
-            else if(score>quizLength*0.5)yourRemark = remark[1]
-            
-            
-            quiz.innerHTML = `
-            <h1 style="text-align:center">Hey ${usesrName} !</h1>
-            <h2 style="text-align:center">You final Score is ${score}/${quizLength} <br> ${yourRemark} </h2>
-            <br>
-            
-            <button onclick="location.reload()">Reload</button>
-            `
         }
     }
     else{
         alert("Please select one of the option first!")
     }
+    checkNext()
+    
 })
+
+function checkNext(){
+    
+    questionAnswered.push(currentQuiz)
+
+    if(questionAnswered.length<quizLength){
+        loadQuiz() 
+    }
+    else{
+        if(score===quizLength)yourRemark = remark[2]
+        else if(score>quizLength*0.5)yourRemark = remark[1]
+        
+        
+        quiz.innerHTML = `
+        <h1 style="text-align:center">Hey ${userName} !</h1>
+        <h2 style="text-align:center">You final Score is ${score}/${quizLength} <br> ${yourRemark} </h2>
+        <br>
+        
+        <button onclick="location.reload()">Reload</button>`
+    }
+}
+
+
+
+function startTimer(time){
+    counter = setInterval(function(){
+        time+=1
+        timeLine.style.width = `${time}px`
+        if(time>652){
+            clearInterval(counter)
+            checkNext()
+        }
+    },23)
+}
 
 
 

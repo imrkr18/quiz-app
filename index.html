@@ -14,11 +14,14 @@
         <input type="text" placeholder="Enter your name" id="input-start" >
         <span class="focus-border"></span>
         <button id="startBtn" onclick=loadQuiz()>Start Quiz</button>
+        <h4 style="text-align: center; color: rgb(77, 76, 76);">There is 15 seconds for each question to answer</h4>
     </div>
 
     <!-- Quiz Container -->
     <div class="container" id="container">
+        <div id="timeline"></div>
         <div class="header">
+
             <h2 id="question">Question text</h2>
             <ul>
                 <li>
@@ -47,9 +50,7 @@
 
         <hr>
 
-        <div class="footer" id="footer">
-            Hello
-        </div>
+        <div class="footer" id="footer"></div>
     </div>
 
 
