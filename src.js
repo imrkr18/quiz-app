@@ -113,7 +113,7 @@ let queNo = 0 // to indicate queNo
 let questionAnswered = [] // to store asked question during quiz
 let remark = ["Low score! You have to practice more!","Very Good Score! Keep it up", "Amazing! You did it Topper"] // remarks
 let yourRemark = remark[0] // default remark
-let currentQuiz// generate the que randomly
+let currentQuiz// to store current question No 
 
 
 // function to generate random quiz question which is not asked before
@@ -137,6 +137,9 @@ function loadQuiz(){
     queNo++
     deselectAnswer() 
     currentQuiz = randomQuizNo() 
+
+    // loading the question to app
+
     const currentQuizData = quizData[currentQuiz]
 
     question.innerHTML = `Q${queNo}: `+ " " + currentQuizData.question
@@ -149,10 +152,13 @@ function loadQuiz(){
 
 }
 
+// to deselect all selected option
 function deselectAnswer(){
-    answers.forEach(answer => answer.checked = false)
+    answers.forEach(answer => answer.checked = false) 
 }
 
+
+// to get selected option by the user
 function getSelected(){
     let answerSelected
 
@@ -167,30 +173,32 @@ function getSelected(){
 
 submitBtn.addEventListener('click', ()=>{
 
-    const answer = getSelected()
+    const answer = getSelected() // get the usesr entered answer
     
     if(answer){
         if(answer===quizData[currentQuiz].answer){
-            score++
+            score++  // if ans true then inc the score
         }
+        checkNext() // check for the next question
     }
     else{
-        alert("Please select one of the option first!")
+        alert("Please select one of the option first!") // if not selected any answer then alert user
     }
-    checkNext()
     
 })
 
+
+// to check next question
 function checkNext(){
     
-    questionAnswered.push(currentQuiz)
-
-    if(questionAnswered.length<quizLength){
-        loadQuiz() 
+    questionAnswered.push(currentQuiz) // push the current quiz que into arr
+    
+    if(questionAnswered.length<quizLength){ // to check whether question asked are equal to quiz length or not
+        loadQuiz()  // call to load another question to app
     }
     else{
         if(score===quizLength)yourRemark = remark[2]
-        else if(score>quizLength*0.5)yourRemark = remark[1]
+        else if(score>quizLength*0.5)yourRemark = remark[1] // generate personalized remark based on score
         
         
         quiz.innerHTML = `
@@ -203,12 +211,12 @@ function checkNext(){
 }
 
 
-
+// to set the timer of 15 sec we use setInterval(callback func, delay) func
 function startTimer(time){
     counter = setInterval(function(){
         time+=1
-        timeLine.style.width = `${time}px`
-        if(time>652){
+        timeLine.style.width = `${time}px` // inc the width of timeline to indicate time
+        if(time>652){ 
             clearInterval(counter)
             checkNext()
         }
